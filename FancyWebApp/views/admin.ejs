@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+
+<% include includes/head %>
+
+<body>
+    <header>
+        <% include includes/navbar %>
+        <% include includes/sidebar %>
+    </header>
+    <main>
+
+        <div class="container">
+
+            <% if(typeof page != 'undefined') { %>
+            <div class="page" id="page-<%= page %>">
+                <%- include(page)  %>
+            </div>
+            <% } %>
+           
+        </div>
+    </main>
+</body>
+</html>

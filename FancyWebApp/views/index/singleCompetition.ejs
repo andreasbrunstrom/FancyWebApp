@@ -1,0 +1,104 @@
+﻿<% if(competition) { %>
+
+
+<div class="row">
+    <div class="col l4 m5 s12">
+        <div class="card">
+            <div class="card-content">
+                <span class="live-bagde <%= (competition.started === true ? '' : 'hide') %>">
+                    Live
+                </span>
+                <div class="row">
+
+                    <input id="competitionId" type="hidden" value="<%= competition._id %>" />
+                    <div class="input-field col s12">
+                        <input readonly id="competitionName" type="text" value="<%=competition.name %>">
+                        <label for="competitionName">Tävlingsnamn</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input readonly id="competitionDate" type="text" value="<%= competition.date ? competition.date.split('T')[0] : '' %>">
+                        <label for="competitionDate">Datum</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <%var options = [ "Damer", "Herrar", "Mix" ]; %>
+                        <input readonly type="text" value="<%= options[competition.gender] %>" id="competitionGender" />
+                        <label for="competitionGender">Kön / Mix</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <%var options2 = [ "A", "B", "C", "Internationell" ]; %>
+                        <input readonly type="text" value="<%= options2[Number(competition.ageGroup)] %>" id="competitionAgeGroup" />
+                        <label for="competitionAgeGroup">Klass</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input readonly type="text" value="<%= competition.height %> m" id="competitionHeight" />
+                        <label for="competitionHeight">Höjd</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input readonly id="competitionRounds" type="text" value="<%=competition.rounds %>" />
+                        <label for="competitionRounds" class="active">Omgångar</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col l8 m7 s12">
+        <ul id="contestants" class="collapsible" style="border: none;">
+
+            <% if(competition.contestants) { competition.contestants.forEach(function(contestant) { if(contestant.userinfo) { %>
+            <li class="contestant" data-userid="<%= contestant.userinfo._id %>">
+                <div class="collapsible-header" style="position: relative;">
+
+                    <div class="row" style="margin-bottom: 0; position: relative">
+
+                        <div style="white-space: nowrap; text-overflow: ellipsis; overflow-x: hidden;" class="col s4" id="contestantName"><%= contestant.userinfo.name %></div>
+                        <div style="white-space: nowrap; text-overflow: ellipsis; overflow-x: hidden;" class="col s4"><%= contestant.userinfo.club %></div>
+                        <div class="col s2"><%= contestant.userinfo.nationality %></div>
+                        <div class="col s1"><span class="totalScore"><%= contestant.totalscore %></span>&nbsp;p</div>
+                        <% if(competition.started != true) { %>
+                        
+                        <% } %>
+                    </div>
+                    
+                </div>
+
+                <div class="collapsible-body" style="padding: 1rem;">
+                    <span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 50%">Hoppkod</th>
+                                    <th>Poäng</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(contestant.jumps) { contestant.jumps.forEach(function(jump) { %>
+                                <tr class="jumpData">
+                                    <td class="jumpCode"><%=jump.jumpCode %></td>                                                                  
+                                    <td class="jumpScore"><%=jump.jumpScore %></td>
+                                    
+                                </tr>
+                                <% }); } %>
+                            </tbody>
+                        </table>
+                    </span>
+                </div>
+
+            </li>
+            <% }}); } %>
+           
+        </ul>
+        
+
+
+    </div>
+</div>
+
+<% } %>
+
+<% include ../includes/Modals/userlist %>

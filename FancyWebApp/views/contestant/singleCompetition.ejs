@@ -1,0 +1,95 @@
+﻿<% if(competition) { %>
+
+<div class="row" style="margin: -36px 0 0 0;">
+    <div class="col s12">
+
+        <ul class="right" style="margin: 0;">
+            <li style="display: inline-block; padding: 0 10px;">
+                <a href="javascript:void(0);" id="competitionSave" class="blue-text"><i style="font-size: 2rem;" class="material-icons">save</i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col l4 m5 s12">
+        <div class="card">
+            <div class="card-content">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input class="black-text" id="competitionName" type="text" disabled="disabled" value="<%=competition.name %>">
+                        <label class="black-text" for="competitionName">Tävlingsnamn</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input class="black-text" id="competitionDate" type="text" disabled="disabled" value="<%=competition.date %>">
+                        <label class="black-text" for="competitionDate">Datum</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input class="black-text" type="text" value="<%= competition.gender %>" disabled="disabled" id="competitionGender" />
+                        <label class="black-text" for="competitionGender">Kön / Mix</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input class="black-text" type="text" value="<%= competition.ageGroup %>" disabled="disabled" id="competitionAgeGroup" />
+                        <label class="black-text" for="competitionAgeGroup">Klass</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input class="black-text" type="text" value="<%= competition.height %>" disabled="disabled" id="competitionHeight" />
+                        <label class="black-text" for="competitionHeight">Höjd</label>
+                    </div>
+
+                    <div class="input-field col s12">
+                        <input class="black-text" disabled="disabled" id="competitionRounds" type="text" value="<%=competition.rounds %>" />
+                        <label class="black-text" for="competitionRounds" class="active">Omgångar</label>
+                    </div>
+                    <a class="waves-effect waves-light btn" id="sign-up-to-comp"><i class="material-icons right">assignment_ind</i>Skicka in anmälan</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col l8 m7 s12">
+        <div class="card">
+            <div class="card-content row">
+                <div id="the-jump-codes">
+
+                    <%for( var i = 0; i < competition.rounds; i++) {%>
+                    <div class="input-field col s12">
+
+                        <input class="modal-trigger jumpCode" readonly type="text" value="" placeholder="Klicka för att välja" />
+
+                        <!--<select>Option <%i%>
+                <option value="" disabled selected>Klicka för att välja</option>
+                <% for(key in jumpCodes){
+                if(jumpCodes[key]["DD"][Math.floor(competition.height)]){%>
+
+                <option value="<%=key %>"><%=key %></option>
+
+                <% }} %>
+            </select>-->
+                        <label>Hopp <%= i+1 %></label>
+                    </div>
+                    <%}%>
+                </div>
+                <!--<select>
+                    <option value="" disabled selected>Choose your option</option>
+                    <%for( var i = 0; i < competition.rounds; i++) {%>
+                    <option value="<%i%>">Option <%i%></option>
+                    <%}%>
+                </select>
+                <label>Materialize Select</label>-->
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<% } %>
+
+<% include ../includes/Modals/userlist %>
+<% include ../includes/Modals/jumpcodes %>
+
+

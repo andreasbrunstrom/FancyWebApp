@@ -1,0 +1,26 @@
+﻿<div id="modal-jumpcodes" class="modal modal-small">
+    <!--<input type="hidden" name="return-url" value="">-->
+    <div class="modal-content">
+        <h4>Välj hoppkod</h4>
+        <p></p>
+
+        <div class="input-field">
+            <input type="text" name="search" class="searchbox" data-filter="#jumpcodeslist" autocomplete="off">
+            <label style="left: 0;" for="search">Sök</label>
+        </div>
+        <div class="input-field">
+            <input type="hidden" value="" id="selectedJumpcode">
+            <div id="jumpcodeslist" class="collection">
+                <% for(key in jumpCodes){ %>
+                    <a class="collection-item">
+                        <span class="filter-value"><%= key %></span>
+                        <span class="hide-on-small-only right"><%= jumpCodes[key].desc %></span>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button id="btn-selectJumpcode" name="add-user" class="waves-effect waves-green btn blue">Välj</button>
+    </div>
+</div>

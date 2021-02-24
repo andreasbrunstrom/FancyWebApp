@@ -1,0 +1,29 @@
+﻿<head>
+    <title><%=title%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Roboto+Slab:100,300|Roboto:100,200,400,300,700|Open+Sans:400,300|Lobster|Roboto+Mono:400,400italic,500,500italic,700,700italic" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.7.3.js"></script>
+    <script src="/scripts/socket.io.js"></script>
+    <script src="/scripts/Script.js"></script>
+
+    <%  if(user !== null) { %>
+        <% if(user.userlevel == 3) { %>
+        <script src="/scripts/adminScript.js"></script>
+        <% } else if(user.userlevel == 2) { %>
+        <script src="/scripts/judgeScript.js"></script>
+        <% } else if(user.userlevel == 1) { %>
+        <script src="/scripts/contestantScript.js"></script>
+        <% } %>
+    <% } %>
+     
+</head>

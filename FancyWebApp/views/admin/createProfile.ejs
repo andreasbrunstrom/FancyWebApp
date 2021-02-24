@@ -1,0 +1,76 @@
+﻿        <div class="card">
+            <form>
+                <div class="card-content row">
+                    <div class="col s12 m6 l6">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="username" type="text" value="" />
+                                <label for="username">Användarnamn</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="name" type="text" value="" />
+                                <label for="name">Namn</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="birthdate" type="date" class="datepicker" value="1990-01-01">
+                                <% /*<input id="birthdate" type="text" value=""> */%>
+                                <label for="birthdate">Födelsedatum</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select id="gender">
+                                    <option value="" disabled selected>Kicka för att välja</option><%
+                                    var options = [ "Kvinna", "Man", "Attackhelikopter" ];
+                                    for ( var i = 0; i < options.length; i++ )
+                                    {
+                                    %>
+                                    <option value="<%=i %>"><%=options[i] %></option><%
+                                    }
+                                    %>
+                                </select>
+                                <label for="gender">Kön</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="club" type="text" value="">
+                                <label for="club">Klubb</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="phonenumber" type="text" value="">
+                                <label for="phonenumber">Telefonnummer</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="email" type="text" value="">
+                                <label for="email">Epost</label>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col s12 m6 l6">
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <input type="password" id="password" />
+                                    <label for="password">Lösenord</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <input type="password" id="repeatPassword" />
+                                    <label for="repeatPassword">Repetera lösenord</label>
+                                </div>
+                                <div class="input-field col s12">
+                                    <select id="userlevel">
+                                        <option value="1" disabled selected>Kicka för att välja</option><%
+                                        var options = [ "Deltagare", "Domare", "Admin" ];
+                                        for ( var i = 0; i < options.length; i++ )
+                                        {
+                                        %>
+                                        <option value="<%=i+1 %>" ><%=options[i] %></option><%
+                                        }
+                                        %>
+                                    </select>
+                                    <label for="userlevel">Användarnivå</label>
+                                </div>
+                                <div class="col s12">
+                                    <input type="button" value="Skapa användare" id="userCreate" class="btn blue right" />
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </form>
+        </div>

@@ -1,0 +1,234 @@
+﻿body {
+    background-color: #EEEEF2;
+}
+
+.blue {
+    background-color: #007ACC !important;
+}
+
+.blue-text {
+    color: #007ACC !important;
+}
+
+.live-bagde {
+    animation: pulse 1.5s infinite alternate;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    padding: 1px 8px;
+    background-color: #f44336;
+    color: white;
+    border-radius: 2px;
+}
+
+@keyframes pulse {
+    0% {
+        background-color: #f44336;
+        color: white;
+    }
+
+    100% {
+        background-color: #FFFFFF;
+        color: #f44336;
+    }
+}
+
+.buttonrow {
+    margin: 10px 0 0 0 !important;
+}
+
+.buttonrow li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+@media only screen and (min-width: 992px) {
+    .buttonrow {
+        margin: -36px 0 0 0 !important;
+    }
+}
+
+.chip {
+    display: inline-block;
+    /*margin: 0 0 5px 25px;*/
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    float: right;
+    position: relative;
+    top: 5px;
+}
+
+#userlist, #jumpcodeslist {
+    overflow-y: scroll;
+    height: 15rem;
+    height: 30vh;
+}
+
+.collection .collection-item label {
+    top: 1px;
+    left: -5px;
+    display: block;
+    color: #6d6d6d;
+}
+
+.side-nav ul li ul {
+    margin: 0;
+}
+
+.side-nav li ul {
+    display: none;
+}
+
+.side-nav li.active ul {
+    display: block;
+    background: #EEEEF2;
+    border: none;
+}
+
+@media only screen and (max-width: 992px) {
+
+    .side-nav li.active ul {
+        background: #ffffff;
+    }
+}
+
+.side-nav ul li ul li a {
+    padding: 0 37.5px 0 45px;
+    background: none;
+    font-weight: normal;
+}
+
+    /*.side-nav li.active ul li {
+    background: none;
+    padding: 0 37.5px 0 45px;
+}*/
+
+
+
+li .dragHandle {
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==') no-repeat 1px 50%;
+    width: 10px;
+    height: 30px;
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    cursor: grab;
+    cursor: -webkit-grab;
+    visibility: hidden;
+}
+
+ul.sortable li:hover .dragHandle {
+    visibility: visible;
+}
+
+li .closeButton {
+    visibility: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 10px;
+    height: 24px;
+}
+
+ul li:hover .closeButton {
+    visibility: visible;
+}
+
+
+
+.navbar-row2 {
+    width: 100%;
+    float: left;
+    display: none;
+    background: rgba(0,0,0,.1);
+}
+
+input[type=text].login-input, input[type=password].login-input {
+    background: #fff;
+    border-radius: 2px;
+    padding: 12px;
+    box-sizing: border-box;
+    margin: 0;
+    border: none !important;
+    color: rgba(0,0,0,0.87);
+}
+
+@media only screen and (min-width: 992px) {
+    .side-nav.fixed {
+        top: 64px;
+        background: none;
+        box-shadow: none;
+    }
+
+    main {
+        padding-left: 300px;
+    }
+
+        main .container {
+            width: auto;
+            margin: 5%;
+        }
+
+    .navbar-fixed {
+        z-index: 1000;
+    }
+    #toast-container {
+        right: 40%;
+    }
+}
+
+.card-content .row {
+    margin-bottom: 0;
+}
+
+.side-nav ul {
+    margin-right: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+nav .brand-logo.left {
+    left: inherit;
+}
+
+#points {
+    width: 120px;
+    display: block;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 50px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+#unregisterComp {
+    height: 2em;
+    width: 6em;
+    font-size: 0.9em;
+    line-height: 2.2em;
+    text-indent: -1.6em;
+}
+
+#signUpForComp {
+    height: 2em;
+    width: 6em;
+    font-size: 0.9em;
+    line-height: 2.2em;
+    text-indent: -0.9em;
+}
+
+#testar {
+    height: 2em;
+    width: 6em;
+    font-size: 0.9em;
+    line-height: 2.2em;
+    text-indent: -1.6em;
+}
+
+#testar2 {
+    height: 2em;
+    width: 6em;
+    font-size: 0.9em;
+    line-height: 2.2em;
+    text-indent: -0.79em;
+}

@@ -1,0 +1,196 @@
+﻿<% if(typeof competition != 'undefined') { %>
+
+<div class="row buttonrow" style="margin: -36px 0 0 0;">
+    <div class="col s12">
+
+        <ul class="right" style="margin: 0;">
+            <li>
+                <a href="javascript:void(0);" id="competitionSave" class="blue-text tooltipped" data-position="bottom" data-tooltip="Spara" data-delay="50"><i style="font-size: 2rem;" class="material-icons">save</i></a>
+            </li>
+            <% if(competition._id != -1) { %>
+            <li style="<%= (competition.ended ? 'display: none;' : '') %>">
+                <a href="javascript:void(0);" id="competitionStart" class="green-text tooltipped" data-position="bottom" data-tooltip="Starta tävlingen" data-delay="50"><i style="font-size: 2rem;" class="material-icons">play_arrow</i></a>
+            </li>
+            <li style="display: none;">
+                <a href="javascript:void(0);" id="competitionPause" class="green-text tooltipped" data-position="bottom" data-tooltip="Pausa tävlingen" data-delay="50"><i style="font-size: 2rem;" class="material-icons">pause</i></a>
+            </li>
+            <li style="<%= (competition.ended ? '' : 'display: none;') %>">
+                <a href="javascript:void(0);" id="competitionReset" class="red-text tooltipped" data-position="bottom" data-tooltip="Återställ tävlingen" data-delay="50"><i style="font-size: 2rem;" class="material-icons">settings_backup_restore</i></a>
+            </li>
+            <li style="display: none;">
+                <a href="javascript:void(0);" id="nextJump" class="red-text tooltipped" data-position="bottom" data-tooltip="Nästa hopp" data-delay="50"><i style="font-size: 2rem;" class="material-icons">skip_next</i></a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+    <div class="row">
+    <div class="col l4 m5 s12">
+        <div class="card">
+            <div class="card-content">
+
+                <input id="competitionId" type="hidden" disabled value="<%=competition._id %>">
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="competitionName" type="text" value="<%=competition.name %>">
+                        <label for="competitionName">Tävlingsnamn</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="competitionDate" type="date" class="datepicker" value="<%= competition.date ? competition.date.split('T')[0] : '' %>">
+                        <label for="competitionDate">Datum</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="competitionGender">
+                            <option value="" disabled selected>Klicka för att välja</option><%
+                            var options = [ "Damer", "Herrar", "Mix" ];
+                            for ( var i = 0; i < options.length; i++ )
+                            {
+                            var selected = ( competition.gender == i ) ? "selected" : "";
+                            %>
+                            <option value="<%=i %>" <%=selected %>><%=options[i] %></option><%
+                            }
+                            %>
+                        </select>
+                        <label for="competitionGender">Kön / Mix</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="competitionAgeGroup">
+                            <option value="" disabled selected>Klicka för att välja</option><%
+                            var options = [ "A", "B", "C", "Internationell" ];
+                            for ( var i = 0; i < options.length; i++ )
+                            {
+                            var selected = ( competition.ageGroup == i ) ? "selected" : "";
+                            %>
+                            <option value="<%=i %>" <%=selected %>><%=options[i] %></option><%
+                            }
+                            %>
+                        </select>
+                        <label for="competitionAgeGroup">Klass</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="competitionHeight">
+                            <option value="" disabled selected>Klicka för att välja</option><%
+                            var options = [ 1, 3, 5, 7.5, 10 ];
+                            for ( var i = 0; i < options.length; i++ )
+                            {
+                            var selected = ( competition.height == options[i] ) ? "selected" : "";
+                            %>
+                            <option value="<%=options[ i ] %>" <%=selected %>><%=options[i] %> m</option><%
+                            }
+                            %>
+                        </select>
+                        <label for="competitionHeight">Höjd</label>
+                    </div>                    
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s12">
+                            <input type="range" id="competitionRounds" min="0" max="15" value="<%=competition.rounds || 3 %>" />
+                        <label for="competitionRounds" class="active">Omgångar</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-content">
+                
+                <ul class="collection sortable" id="judgeList">
+                    <% if(competition.judges) { %>
+                    <% competition.judges.forEach(function(judge, index) { if(judge.userinfo) { %>
+
+                    <li class="collection-item" style="position: relative;" data-userid="<%= judge.userinfo._id %>" data-judgeseat="<%= index %>">
+                        <div class="dragHandle"></div>
+                        <span id="judgeName"><%= judge.userinfo.name %></span>
+                        <a class="closeButton removeJudge" href="javascript:void(0);"><i class="material-icons">close</i></a>
+                    </li>
+
+                    <% }}); } %>
+                </ul>
+
+                <a id="addJudge" href="#modal-userlist" class="modal-trigger btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+            </div>
+        </div>
+    </div>
+    <div class="col l8 m7 s12">
+        <ul id="contestants" class="collapsible sortable" style="border: none;">
+            <% competition.contestants.push({
+                userinfo: {
+                    _id: -1,
+                    name: '',
+                    club: '',
+                    nationality: '',
+                    totalscore: 0    
+            }, jumps: [{
+            height: '',
+            jumpScore: '',
+            jumpCode: ''
+            }]
+            }); %>
+			<% if(competition.contestants) { competition.contestants.forEach(function(contestant) { if(contestant.userinfo) { %>
+				<li style="position: relative;"  <%= (contestant.userinfo._id == -1 ? 'id=dummyContestant' : '') %> class="<%= (contestant.userinfo._id == -1 ? 'hide' : '') %> contestant" data-userid="<%= contestant.userinfo._id %>">
+					<div class="collapsible-header">
+                        
+						<div class="row" style="margin-bottom: 0; position: relative">
+                            
+                            <div style="white-space: nowrap; text-overflow: ellipsis; overflow-x: hidden;" class="col s4 contestantName"><%= contestant.userinfo.name %></div>
+                            <div style="white-space: nowrap; text-overflow: ellipsis; overflow-x: hidden;" class="col s4"><%= contestant.userinfo.club %></div>
+                            <div class="col s2"><%= contestant.userinfo.nationality %></div>
+                            <div class="col s1"><span class="totalScore"><%= contestant.totalscore %></span>&nbsp;p</div>
+						</div>
+                        
+					</div>
+                    <% if(competition.started != true) { %>
+                    <a href="javascript:void(0);" class="closeButton removeContestant"><i class="material-icons">close</i></a>
+                    <% } %>
+                    <!--<div class="dragHandle"></div>-->
+
+					<div class="collapsible-body" style="padding: 1rem;">
+                        <span>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="width: 50%">Hoppkod</th>
+                                        <th>Poäng</th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                   <% if(contestant.jumps) { for(let i = 0; i < competition.rounds; i++) { var jump = contestant.jumps[i] || {height: '', jumpCode: '', jumpScore: ''}; %>
+                                   <tr class="jumpData">
+                                       <td>
+                                           <input class="modal-trigger jumpCode" readonly type="text" value="<%= jump.jumpCode %>" placeholder="Klicka för att välja" />
+                                       </td>
+                                       <td class="jumpScore"><%=jump.jumpScore %></td>
+                                   </tr>
+                                   <% } } %>
+                                </tbody>
+                            </table>
+                        </span>
+                    </div>
+				</li>
+            <% }}); } %>
+            <li id="emptyRow"><div class="collapsible-header"> </div></li>
+        </ul>
+        <a style="margin: -40px 20px" id="addContestant" href="#modal-userlist" class="modal-trigger btn-floating btn-large waves-effect waves-light red right"><i class="material-icons">add</i></a>
+
+
+    </div>
+</div>
+
+<% } %>
+
+<% include ../includes/Modals/userlist %>
+<% include ../includes/Modals/jumpcodes %>

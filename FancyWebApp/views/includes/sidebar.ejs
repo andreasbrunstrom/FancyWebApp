@@ -1,0 +1,25 @@
+﻿<% if(typeof sidebar != 'undefined' && sidebar != null) { %>
+<div id="nav-mobile" class="side-nav fixed" style="overflow: auto; transform: translateX(0%);">
+    <ul>
+        <% sidebar.forEach(function(item) { %>
+        <% if(item.seperator == true) { %>
+            </ul><ul>
+        <% } else if (typeof item.children != 'undefined') { %>
+            <li class="<%= item.link == active ? 'active' : '' %>">
+                <a class="waves-effect" href="/<%= item.link %>"><i class="material-icons"><%= item.icon %></i><%= item.text %></a>
+                <ul>
+                    <% item.children.forEach(function(child) { %>
+                    <li>
+                        <a class="waves-effect" href="/<%= child.link %>"><i class="material-icons"><%= child.icon %></i><%= child.text %></a>
+                    </li>
+                    <% }); %>
+                </ul>
+            </li>
+        <% } else { %>
+            <li class="<%= item.link == active ? 'active' : '' %>">
+                <a class="waves-effect" href="/<%= item.link %>"><i class="material-icons"><%= item.icon %></i><%= item.text %></a>
+            </li>
+        <% } }); %>
+    </ul>
+</div>
+<% } %>

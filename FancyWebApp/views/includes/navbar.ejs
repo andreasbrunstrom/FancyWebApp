@@ -1,0 +1,64 @@
+﻿<div class="navbar-fixed">
+    <nav class="blue nav-extended">
+        <div class="nav-wrapper">
+            <% if(sidebar != null) { %>
+            <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a>
+            <% } %>
+            <a href="/" class="brand-logo left" style="padding: 0 15px; font-family: 'Lobster', cursive;">FancyDiving</a>
+            <ul class="right">
+                <!--<li><a class="dropdown-button btn blue darken-1" href="#dropdown1" data-activates="dropdown1">Visa sida</a></li>-->
+                <% if (user) { %>
+                <li>
+                    <a href="/logout" class="tooltipped" data-position="left" data-delay="50" data-tooltip="logga&nbsp;ut">
+                        <i class="material-icons">lock_outline</i>
+                    </a>
+                </li>
+                <% } else { %> 
+                <li>
+                    <a id="toggle-login" href="#!">
+                        <i class="material-icons">lock</i>
+                    </a>
+                </li>
+                <% } %>
+                <!--<li><a href="">admin</a></li>
+                <li><a href="">deltagare</a></li>-->
+            </ul>
+            <div class="navbar-row2">
+                <div class="container">
+                    <form action="/login" method="post">
+                        <div class="row" style="margin-top: 20px;">
+                            <div class="col m4 s12">
+                                <input class="login-input" type="text" name="username" id="login-username" placeholder="Användarnamn"/>
+                            </div>
+                            <div class="col m4 s12">
+                                <input class="login-input" type="password" name="password" id="login-password" placeholder="Lösenord" />
+                            </div>
+                            <div class="col m4 s4">
+                                <input type="submit" class="btn white blue-text" name="login" value="Logga in" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- Dropdown Structure -->
+<ul id='dropdown1' class='dropdown-content'>
+  <li>
+    <a class="blue-text" href="/admin">
+      <i class="material-icons">supervisor_account</i>Admin
+    </a>
+  </li>
+  <li>
+    <a class="blue-text" href="/judge">
+      <i class="material-icons">cloud</i>Domare
+    </a>
+  </li>
+  <li>
+    <a class="blue-text" href="/contestant">
+      <i class="material-icons">person</i>Tävlande
+    </a>
+  </li>
+</ul>

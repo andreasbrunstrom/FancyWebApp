@@ -1,0 +1,50 @@
+﻿<% if(competitions) { %>
+<h4>
+    Pågående
+    <span class="chip">Visa alla</span>
+</h4>
+<ul class="collection">
+    <% if(competitions.ongoing) { competitions.ongoing.forEach(function(competition) { %>
+    <li class="collection-item row" style="position: relative;">
+        <a class="col s12 m4" href="/competitions/<%= competition._id %>"><%= competition.name %></a>
+        <span class="col s5 m2"><%= competition.date ? competition.date.split('T')[0] : '' %></span>
+        <% var ageGroups = ['A', 'B', 'C', 'Internationell']; %>
+        <span class="col s4 m3"><%= ageGroups[competition.ageGroup] %></span>
+        <span class="col s3 m1 right-align"><%= competition.height%>&nbsp;m</span>
+    </li>
+    <% }); } %>
+</ul>
+
+<h4>
+    Kommande
+    <span class="chip">Visa alla</span>
+</h4>
+<ul class="collection">
+    <% if(competitions) { competitions.forEach(function(competition) { %>
+    <li class="collection-item row" style="position: relative;">
+        <a class="col s12 m4" href="/competitions/<%= competition._id %>"><%= competition.name %></a>
+        <span class="col s5 m2"><%= competition.date ? competition.date.split('T')[0] : '' %></span>
+        <% var ageGroups = ['A', 'B', 'C', 'Internationell']; %>
+        <span class="col s4 m3"><%= ageGroups[competition.ageGroup] %></span>
+        <span class="col s3 m1 right-align"><%= competition.height%>&nbsp;m</span>
+    </li>
+    <% }); } %>
+</ul>
+
+<h4>
+    Tidigare
+    <span class="chip">Visa alla</span>
+</h4>
+
+<ul class="collection">
+    <% if(competitions.past) { competitions.past.forEach(function(competition) { %>
+    <li class="collection-item row" style="position: relative;">
+        <a class="col s12 m4" href="/competitions/<%= competition._id %>"><%= competition.name %></a>
+        <span class="col s5 m2"><%= competition.date ? competition.date.split('T')[0] : '' %></span>
+        <% var ageGroups = ['A', 'B', 'C', 'Internationell']; %>
+        <span class="col s4 m3"><%= ageGroups[competition.ageGroup] %></span>
+        <span class="col s3 m1 right-align"><%= competition.height%>&nbsp;m</span>
+    </li>
+    <% }); } %>
+</ul>
+<% } %>

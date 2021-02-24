@@ -1,0 +1,61 @@
+﻿<% if(typeof competitions != 'undefined') { %>
+<h4>
+    Mina kommande tävlingar<div class="chip" style="
+    display: inline-block;
+    margin: 0 0 5px 25px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    position: relative;
+    bottom: 5px;
+">Visa alla
+</h4>
+<ul class="collection">
+    <% if(competitions.ongoing) { competitions.ongoing.forEach(function(competition) { %>
+    <li class="collection-item">
+        <a href="/competitions/<%= competition._id %>"><%= competition.name %></a>
+    </li>
+    <% }); } %>
+</ul>
+
+<h4>
+    Tävlingar att anmäla mig till<div class="chip" style="
+    display: inline-block;
+    margin: 0 0 5px 25px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    position: relative;
+    bottom: 5px;
+">Visa alla
+</h4>
+<ul class="collection">
+    <% if(competitions) { competitions.forEach(function(competition) { %>
+    <li class="collection-item">
+        <a href="/competitions/<%= competition._id %>"><%= competition.name %></a> <h6><%= competition.date%></h6>
+    </li>
+    <% }); } %>
+</ul>
+
+<h4>
+    Mina resultat<div class="chip" style="
+    display: inline-block;
+    margin: 0 0 5px 25px;
+    height: 24px;
+    line-height: 24px;
+    border-radius: 2px;
+    position: relative;
+    bottom: 5px;
+">
+        Visa alla
+    </div>
+</h4>
+
+<ul class="collection">
+    <% if(competitions.past) { competitions.past.forEach(function(competition) { %>
+    <li class="collection-item">
+        <a href="/competitions/<%= competition._id %>"><%= competition.name %></a>
+    </li>
+    <% }); } %>
+</ul>
+<% } %>

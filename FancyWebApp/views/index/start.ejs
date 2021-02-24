@@ -1,0 +1,48 @@
+﻿<h1 align="center">Välkommen</h1>
+
+<div class="row">
+
+    <div class="col s12 m12 l6">
+        <div class="card">
+            <div class="card-content">
+
+                <span class="card-title grey-text text-darken-4">
+                    Aktuell tävling
+                </span>
+                <p>Aktuell tävling ska skrivas här</p>
+            </div>
+            <div class="card-action right-align">
+                <a href="/competitions">Alla tävlingar</a>
+            </div>
+        </div>
+    </div>
+
+    <% if(typeof news != 'undefined') { %>
+    <div class="col s12 m12 l6">
+        <div class="card">
+             <div class="card-content">
+                 <span class="card-title grey-text text-darken-4">
+                    Klubbnyheter
+                 </span>
+                 <ul class="collection">
+                     <% news.forEach(function(item) { %>
+                     <li class="collection-item">
+                         <span class="title blue-text">
+                             <%= item.title %>
+                         </span>
+                         <p><%= item.excerpt %></p>
+                     </li>
+                     <% }); %>
+                 </ul>
+            </div>
+            <div class="card-action right-align">
+                <a href="http://www.orebrosimallians.com">Besök klubbens hemsida</a>
+            </div>
+        </div>
+    </div>
+    <% } %>
+</div>
+
+
+
+
